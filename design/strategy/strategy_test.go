@@ -5,9 +5,9 @@ import (
 )
 
 func Test_Strategy(t *testing.T){
-	case1 := NewStrategy("CaseOneVar1","CaseOneVar2",1,&CaseOne{})
-	case1.Do()
+	strategyType := "one"
 
-	case2 := NewStrategy("CaseTwoVar1","CaseTwoVar2",2,&CaseTwo{})
-	case2.Do()
+	caseStra := NewStrategy("CaseOneVar1","CaseOneVar2",1,StrategyList[strategyType])
+	caseStra.Do()
+
 }

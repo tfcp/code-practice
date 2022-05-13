@@ -2,10 +2,24 @@ package strategy
 
 import "fmt"
 
+var (
+	// 核心优化1
+	StrategyList = map[string]Strategy{
+		"one": &CaseOne{},
+		"two": &CaseTwo{},
+	}
+)
+
+// 核心优化2
 type StrategyContext struct {
 	// 变量
 	VarOne, VarTwo string
 	VarThree       int
+}
+
+type StrategyRes struct {
+	// 变量
+	ResOne, ResTwo string
 }
 
 type StrategyBusiness struct {
@@ -41,6 +55,7 @@ func (this *CaseTwo) Do(ctx *StrategyContext) {
 	fmt.Println(ret)
 }
 
+// 策略对象生成
 func NewStrategy(varOne, varTwo string, varThree int, strategy Strategy) *StrategyBusiness {
 	return &StrategyBusiness{
 		ctx: &StrategyContext{
