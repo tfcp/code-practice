@@ -3,23 +3,18 @@ package strategy
 import "fmt"
 
 var (
-	// 核心优化1
+	// 代码核心(策略变量列表)
 	StrategyList = map[string]Strategy{
 		"one": &CaseOne{},
 		"two": &CaseTwo{},
 	}
 )
 
-// 核心优化2
+// 代码核心(策略请求上下文, 封装struct方便后续维护)
 type StrategyContext struct {
 	// 变量
 	VarOne, VarTwo string
 	VarThree       int
-}
-
-type StrategyRes struct {
-	// 变量
-	ResOne, ResTwo string
 }
 
 type StrategyBusiness struct {
@@ -27,7 +22,7 @@ type StrategyBusiness struct {
 	strategy Strategy
 }
 
-func (this *StrategyBusiness) Do(){
+func (this *StrategyBusiness) Do() {
 	this.strategy.Do(this.ctx)
 }
 
@@ -55,12 +50,12 @@ func (this *CaseTwo) Do(ctx *StrategyContext) {
 	fmt.Println(ret)
 }
 
-// 策略对象生成
+// 代码核心(生成)
 func NewStrategy(varOne, varTwo string, varThree int, strategy Strategy) *StrategyBusiness {
 	return &StrategyBusiness{
 		ctx: &StrategyContext{
-			VarOne: varOne,
-			VarTwo: varTwo,
+			VarOne:   varOne,
+			VarTwo:   varTwo,
 			VarThree: varThree,
 		},
 		strategy: strategy,
