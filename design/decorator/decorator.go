@@ -3,7 +3,6 @@ package decorator
 import "fmt"
 
 // 给我们的屎山代码新增逻辑
-
 type ShitMountain interface {
 	BigLogic()
 }
