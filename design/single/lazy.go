@@ -16,6 +16,7 @@ type LazySingleton struct {
 }
 
 func GetLazyInstance() *LazySingleton {
+	// 双重检测
 	if lazySingleton == nil {
 		once.Do(func() {
 			fmt.Println("once lazy")
